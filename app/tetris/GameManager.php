@@ -3,9 +3,10 @@ namespace Tetris;
 
 class GameManager
 {
-	public function render() : array
-	{
-		return [
+	readonly private array $area;
+
+	public function __construct(array $area = null) {
+		$this->area = $area ?? [
 			["□□□□□□□□□□"],
 			["□□□□□□□□□□"],
 			["□□□□□□□□□□"],
@@ -28,5 +29,10 @@ class GameManager
 			["□□□□□□□□□□"],
 			["□□□□□□□□□□"],
 		];
+	}
+
+	public function render() : array
+	{
+		return $this->area;
 	}
 }
