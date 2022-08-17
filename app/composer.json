@@ -1,0 +1,12 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "9.5.21"
+    },
+    "config": {
+        "bin-dir": "/usr/local/bin/"
+    },
+    "autoload": {
+        "psr-4": {
+        }
+    }
+}

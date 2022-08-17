@@ -1,0 +1,16 @@
+version: "3"
+volumes:
+  php-fpm-socket:
+services:
+  app:
+    container_name: tetris
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
+    volumes:
+      - type: volume
+        source: php-fpm-socket
+        target: /var/run/php-fpm
+        volume:
+          nocopy: true
+      - ./app:/work/app
