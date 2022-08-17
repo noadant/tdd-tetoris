@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Tetris\GameManager;
 
 class RenderTest extends TestCase
 {
