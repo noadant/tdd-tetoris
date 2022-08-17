@@ -3,36 +3,14 @@ namespace Tetris;
 
 class GameManager
 {
-	readonly private array $area;
+	readonly private Area $area;
 
-	public function __construct(array $area = null) {
-		$this->area = $area ?? [
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-			["□□□□□□□□□□"],
-		];
+	public function __construct(Area $area = new Area()) {
+		$this->area = $area;
 	}
 
 	public function render() : array
 	{
-		return $this->area;
+		return $this->area->render();
 	}
 }
