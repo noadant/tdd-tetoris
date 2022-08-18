@@ -3,14 +3,25 @@
 use PHPUnit\Framework\TestCase;
 use Tetris\Controller\KeyboardController;
 use Tetris\Event\HitLeftEvent;
+use Tetris\Event\HitRightEvent;
 
 class ControlTest extends TestCase
 {
-    public function testControlFromKeyboardToEvent() {
-		$key = '1b5b44'; //キーボードの左
+	/**
+	 * @dataProvider toEventProvider
+	 */
+    public function testControlFromKeyboardToEvent($key, $expected) {
 		$controller = new KeyboardController();
 		$controller = $controller->hit($key);
 		$events = $controller->toEvents();
-		$this->assertEquals(new HitLeftEvent(), $events[0]);
+		$this->assertEquals($expected, $events[0]);
     }
+
+	public function toEventProvider()
+	{
+		return [
+			[KeyboardController::KEY_LEFT, new HitLeftEvent()],
+			[KeyboardController::KEY_RIGHT, new HitRightEvent()]
+		];
+	}
 }
