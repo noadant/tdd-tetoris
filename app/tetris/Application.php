@@ -1,8 +1,6 @@
 <?php
 namespace Tetris;
 
-use Tetris\Tetrimino\STetrimino;
-
 class Application
 {
 	public function run()

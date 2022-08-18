@@ -9,5 +9,8 @@
         "psr-4": {
             "Tetris\\": "tetris/"
         }
+    },
+    "require": {
+        "symfony/event-dispatcher": "^6.1"
     }
 }
