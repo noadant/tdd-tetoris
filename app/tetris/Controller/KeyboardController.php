@@ -1,7 +1,6 @@
 <?php
 namespace Tetris\Controller;
 
-use Symfony\Contracts\EventDispatcher\Event;
 use Tetris\Event\HitLeftEvent;
 use Tetris\Event\HitRightEvent;
 
@@ -28,7 +27,7 @@ class KeyboardController
 		return array_map(fn($key) => $this->toEvent($key), $this->keys);
 	}
 
-	private function toEvent($key) : Event
+	private function toEvent($key)
 	{
 		return match($key) {
 			self::KEY_LEFT => new HitLeftEvent(),

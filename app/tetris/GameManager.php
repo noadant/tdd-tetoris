@@ -1,6 +1,8 @@
 <?php
 namespace Tetris;
 
+use Tetris\Event\HitLeftEvent;
+use Tetris\Event\HitRightEvent;
 use Tetris\Tetrimino\STetrimino;
 use Tetris\Tetrimino\Tetrimino;
 
@@ -23,10 +25,21 @@ class GameManager
 		$this->timestamp = $timestamp ?? microtime(true);
 	}
 
-	public function process() : self
+	public function process(array $events = []) : self
 	{
-		//todo 処理が早すぎる時にテスト失敗する可能性を見越してusleepしておく
-		usleep(1);
+		$manager = $this->fallProcess();
+		foreach ($events as $event) {
+			if(get_class($event) === HitRightEvent::class) {
+				$manager = $manager->onHitRight();
+			} else if(get_class($event) === HitLeftEvent::class) {
+				$manager = $manager->onHitLeft();
+			}
+		}
+		return $manager;
+	}
+
+	private function fallProcess() : self
+	{
 		$diffTime = microtime(true) - $this->getTime();
 		$notFallingTime = $diffTime + $this->controlled->getNotFallingTime();
 		$controlled = $this->controlled;
@@ -35,6 +48,18 @@ class GameManager
 			$notFallingTime -= $this->config->fall_tetrimino_time;
 		}
 		$controlled = $controlled->setNotFallingTime($notFallingTime);
+		return new self($this->area, $controlled, $this->config);
+	}
+
+	public function onHitRight() : self
+	{
+		$controlled = $this->controlled->moveRight();
+		return new self($this->area, $controlled, $this->config);
+	}
+
+	public function onHitLeft() : self
+	{
+		$controlled = $this->controlled->moveLeft();
 		return new self($this->area, $controlled, $this->config);
 	}
 

@@ -52,6 +52,16 @@ abstract class Tetrimino
 		return new static($this->row - 1, $this->col, $this->degree, $this->not_falling_time);
 	}
 
+	public function moveRight() : static
+	{
+		return new static($this->row, $this->col + 1, $this->degree, $this->not_falling_time);
+	}
+
+	public function moveLeft() : static
+	{
+		return new static($this->row, $this->col - 1, $this->degree, $this->not_falling_time);
+	}
+
 	abstract protected function renderDegree0(): Area;
 
 	abstract protected function renderDegree90(): Area;

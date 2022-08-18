@@ -26,7 +26,7 @@ class ManageTimeTest extends TestCase
 		$config = new GameConfig(fall_tetrimino_time: 0.5);
 		$tetrimino = new STetrimino(5, 5, Tetrimino::DEGREE_90);
 		$manager = new GameManager(controlled: $tetrimino, config: $config);
-		sleep(1);
+		usleep(1010000);
 		$nextManager = $manager->process();
 		$this->assertEquals([
 			"□□□□□□□□□□",
