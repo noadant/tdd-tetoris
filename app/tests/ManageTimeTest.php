@@ -5,6 +5,7 @@ use Tetris\GameManager;
 use Tetris\Area;
 use Tetris\Tetrimino\Tetrimino;
 use Tetris\Tetrimino\STetrimino;
+use Tetris\GameConfig;
 
 class ManageTimeTest extends TestCase
 {
@@ -22,12 +23,13 @@ class ManageTimeTest extends TestCase
 	}
 
 	public function testFallTetrimino() {
-		$config = new GameConfig(fall_tetrimino_time: 500);
-		$tetrimino = new STetrimino(5, 5);
+		$config = new GameConfig(fall_tetrimino_time: 0.5);
+		$tetrimino = new STetrimino(5, 5, Tetrimino::DEGREE_90);
 		$manager = new GameManager(controlled: $tetrimino, config: $config);
-		sleep(500);
+		sleep(1);
 		$nextManager = $manager->process();
 		$this->assertEquals([
+			"□□□□□□□□□□",
 			"□□□□□□□□□□",
 			"□□□□□□□□□□",
 			"□□□□□□□□□□",
@@ -45,7 +47,6 @@ class ManageTimeTest extends TestCase
 			"□□□□□■□□□□",
 			"□□□□□■■□□□",
 			"□□□□□□■□□□",
-			"□□□□□□□□□□",
 			"□□□□□□□□□□",
 			"□□□□□□□□□□",
 		], $nextManager->render());
