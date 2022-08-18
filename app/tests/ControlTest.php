@@ -1,6 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Tetris\Controller\KeyboardController;
+use Tetris\Event\HitLeftEvent;
 
 class ControlTest extends TestCase
 {

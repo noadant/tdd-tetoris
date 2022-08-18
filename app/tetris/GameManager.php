@@ -18,7 +18,7 @@ class GameManager
 		float $timestamp = null
 	) {
 		$this->area = $area;
-		$this->controlled = $controlled ?? new STetrimino(20, 5, Tetrimino::DEGREE_90);
+		$this->controlled = $controlled ?? new STetrimino(21, 5, Tetrimino::DEGREE_90);
 		$this->config = $config;
 		$this->timestamp = $timestamp ?? microtime(true);
 	}
