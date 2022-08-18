@@ -14,5 +14,10 @@ class ManageTimeTest extends TestCase
 		$this->assertEquals($timestamp, $manager->getTime());
     }
 
-	
+	public function testSpendTime() {
+		$timestamp = time();
+		$manager = new GameManager(timestamp: $timestamp);
+		$nextManager = $manager->process();
+		$this->assertNotEquals($manager->getTime(), $nextManager->getTime());
+	}
 }
