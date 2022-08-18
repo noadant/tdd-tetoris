@@ -9,13 +9,13 @@ use Tetris\Tetrimino\STetrimino;
 class ManageTimeTest extends TestCase
 {
     public function testGetTime() {
-		$timestamp = time();
+		$timestamp = microtime(true);
 		$manager = new GameManager(timestamp: $timestamp);
 		$this->assertEquals($timestamp, $manager->getTime());
     }
 
 	public function testSpendTime() {
-		$timestamp = time();
+		$timestamp = microtime(true);
 		$manager = new GameManager(timestamp: $timestamp);
 		$nextManager = $manager->process();
 		$this->assertNotEquals($manager->getTime(), $nextManager->getTime());
