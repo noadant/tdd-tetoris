@@ -1,6 +1,8 @@
 <?php
 namespace Tetris;
 
+use Tetris\Tetrimino\Tetrimino;
+
 class Area
 {
 	readonly private array $rows;
@@ -20,6 +22,15 @@ class Area
 		$row_index = count($rows) - $row - 1;
 		$rows[$row_index][$col] = new Square(true);
 		return new self($rows);
+	}
+
+	public function placeTetrimino(?Tetrimino $tetrimino) : self
+	{
+		if(!$tetrimino) return $this;
+		return $this->placeBlock(4,5)
+					->placeBlock(5, 4)
+					->placeBlock(5, 5)
+					->placeBlock(6, 4);
 	}
 
 	public function render() : array
