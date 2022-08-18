@@ -34,36 +34,73 @@ class RenderTest extends TestCase
 		], $manager->render());
     }
 
-	public function testRenderNotEmpty()
+	/**
+	 * @dataProvider renderNotEmptyProvider
+	 */
+	public function testRenderNotEmpty(array $expected, Tetrimino $tetrimino)
 	{
 		$area = new Area();
 		$area = $area->placeBlock(0, 3)
 					 ->placeBlock(0, 4)
 					 ->placeBlock(0, 5)
 					 ->placeBlock(0, 6);
-		$tetrimono = new STetrimino(Tetrimino::DEGREE_90, 5, 4);
-		$manager = new GameManager($area, $tetrimono);
-		$this->assertEquals([
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□■□□□□□",
-			"□□□□■■□□□□",
-			"□□□□□■□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□□□□□□□□",
-			"□□□■■■■□□□",
-		], $manager->render());
+		$manager = new GameManager($area, $tetrimino);
+		$this->assertEquals($expected, $manager->render());
+	}
+
+	public function renderNotEmptyProvider()
+	{
+		return [
+			[
+				[
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□■□□□□□",
+					"□□□□■■□□□□",
+					"□□□□□■□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□■■■■□□□",
+				],
+				new STetrimino(5, 4, Tetrimino::DEGREE_90)
+			],
+			[
+				[
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□□□□□□□□",
+					"□□□■■□□□□□",
+					"□□■■□□□□□□",
+					"□□□□□□□□□□",
+					"□□□■■■■□□□",
+				],
+				new STetrimino(3, 3, Tetrimino::DEGREE_180)
+			],
+		];
 	}
 }
