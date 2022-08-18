@@ -20,4 +20,34 @@ class ManageTimeTest extends TestCase
 		$nextManager = $manager->process();
 		$this->assertNotEquals($manager->getTime(), $nextManager->getTime());
 	}
+
+	public function testFallTetrimino() {
+		$config = new GameConfig(fall_tetrimino_time: 500);
+		$tetrimino = new STetrimino(5, 5);
+		$manager = new GameManager(controlled: $tetrimino, config: $config);
+		sleep(500);
+		$nextManager = $manager->process();
+		$this->assertEquals([
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□■□□□□",
+			"□□□□□■■□□□",
+			"□□□□□□■□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+			"□□□□□□□□□□",
+		], $nextManager->render());
+	}
 }
