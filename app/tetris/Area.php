@@ -27,10 +27,27 @@ class Area
 	public function placeTetrimino(?Tetrimino $tetrimino) : self
 	{
 		if(!$tetrimino) return $this;
-		return $this->placeBlock(4,5)
-					->placeBlock(5, 4)
-					->placeBlock(5, 5)
-					->placeBlock(6, 4);
+		return $this->merge($tetrimino->render());
+	}
+
+	public function merge(self $area) : self
+	{
+		$rows = $this->rows;
+		foreach($this->rows as $i => $row) {
+			/** @var Square $square */
+			foreach($row as $j => $square) {
+				//todo 被った時にException投げる
+				$rows[$i][$j] = new Square(
+					$square->hasBlock() || $area->getSquare($i ,$j)->hasBlock()
+				);
+			}
+		}
+		return new self($rows);
+	}
+
+	public function getSquare(int $row, int $col) : Square
+	{
+		return $this->rows[$row][$col];
 	}
 
 	public function render() : array

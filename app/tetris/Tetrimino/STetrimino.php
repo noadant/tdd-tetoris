@@ -1,25 +1,38 @@
 <?php
+
 namespace Tetris\Tetrimino;
+
+use Tetris\Area;
 
 class STetrimino extends Tetrimino
 {
-	function renderDegree0(): array
+	protected function renderDegree0(): Area
 	{
-		// TODO: Implement renderDegree0() method.
+		//todo
+		return new Area();
 	}
 
-	function renderDegree90(): array
+	protected function renderDegree90(): Area
 	{
-		// TODO: Implement renderDegree90() method.
+		return (new Area())
+			->placeBlock($this->row, $this->col)
+			->placeBlock($this->row, $this->col + 1)
+			->placeBlock($this->row + 1, $this->col)
+			->placeBlock($this->row - 1, $this->col + 1);
 	}
 
-	function renderDegree180(): array
+	protected function renderDegree180(): Area
 	{
-		// TODO: Implement renderDegree180() method.
+		return (new Area())
+			->placeBlock($this->row, $this->col)
+			->placeBlock($this->row, $this->col + 1)
+			->placeBlock($this->row - 1, $this->col)
+			->placeBlock($this->row - 1, $this->col - 1);
 	}
 
-	function renderDegree270(): array
+	protected function renderDegree270(): Area
 	{
-		// TODO: Implement renderDegree270() method.
+		//todo
+		return new Area();
 	}
 }

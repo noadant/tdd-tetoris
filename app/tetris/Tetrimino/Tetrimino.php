@@ -2,15 +2,17 @@
 
 namespace Tetris\Tetrimino;
 
+use Tetris\Area;
+
 abstract class Tetrimino
 {
 	const DEGREE_0   = 0;
 	const DEGREE_90  = 90;
 	const DEGREE_180 = 180;
 	const DEGREE_270 = 270;
-	readonly private int $row;
-	readonly private int $col;
-	readonly private int $degree;
+	readonly protected int $row;
+	readonly protected int $col;
+	readonly protected int $degree;
 
 	public function __construct(int $row, int $col, int $degree = self::DEGREE_0)
 	{
@@ -19,7 +21,7 @@ abstract class Tetrimino
 		$this->degree = $degree;
 	}
 
-	public function render(): array
+	public function render(): Area
 	{
 		return match ($this->degree) {
 			self::DEGREE_0 => $this->renderDegree0(),
@@ -29,11 +31,11 @@ abstract class Tetrimino
 		};
 	}
 
-	abstract function renderDegree0(): array;
+	abstract protected function renderDegree0(): Area;
 
-	abstract function renderDegree90(): array;
+	abstract protected function renderDegree90(): Area;
 
-	abstract function renderDegree180(): array;
+	abstract protected function renderDegree180(): Area;
 
-	abstract function renderDegree270(): array;
+	abstract protected function renderDegree270(): Area;
 }

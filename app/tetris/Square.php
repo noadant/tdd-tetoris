@@ -12,6 +12,11 @@ class Square
 		$this->hasBlock = $hasBlock;
 	}
 
+	public function hasBlock() : bool
+	{
+		return $this->hasBlock;
+	}
+
 	public function render() : string
 	{
 		return $this->hasBlock ? self::RENDER_CHAR_BLOCK : self::RENDER_CHAR_EMPTY;
