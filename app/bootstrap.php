@@ -1,7 +1,7 @@
 <?php
 
-use Tetris\Application;
+use Tetris\Application\ConsoleApplication;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-return new Application();
+return new ConsoleApplication();

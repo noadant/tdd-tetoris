@@ -32,6 +32,7 @@ class KeyboardController
 		return match($key) {
 			self::KEY_LEFT => new HitLeftEvent(),
 			self::KEY_RIGHT => new HitRightEvent(),
+			default => null
 		};
 	}
 }
