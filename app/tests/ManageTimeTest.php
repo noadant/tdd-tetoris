@@ -9,8 +9,10 @@ use Tetris\Tetrimino\STetrimino;
 class ManageTimeTest extends TestCase
 {
     public function testGetTime() {
-		$time = time();
-		$manager = new GameManager();
-		$this->assertEquals($time, $manager->getTime());
+		$timestamp = time();
+		$manager = new GameManager(timestamp: $timestamp);
+		$this->assertEquals($timestamp, $manager->getTime());
     }
+
+	
 }
