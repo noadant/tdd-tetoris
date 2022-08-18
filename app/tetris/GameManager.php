@@ -19,6 +19,12 @@ class GameManager
 		$this->timestamp = $timestamp ?? time();
 	}
 
+	public function process() : self
+	{
+		sleep(1);
+		return new self($this->area, $this->controlled);
+	}
+
 	public function render() : array
 	{
 		return $this->area->placeTetrimino($this->controlled)->render();
