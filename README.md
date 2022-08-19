@@ -1,5 +1,6 @@
-# tdd-tetoris
+# tdd-tetris
 TDDでテトリス作ってみよう
+（リポジトリ名にスペルミスがあるけど気にするな！）
 
 ## クローンしたら
 make init
